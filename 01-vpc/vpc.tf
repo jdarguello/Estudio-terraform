@@ -13,6 +13,10 @@ provider "aws" {
 
 resource "aws_vpc" "tf_vpc_prueba" {
   cidr_block = "192.160.0.0/16"
+
+  tags = {
+    Name = "Ejemplo TF"
+  }
 }
 
 resource "aws_subnet" "tf_private_subnet" {
@@ -26,7 +30,7 @@ resource "aws_subnet" "tf_public_subnet" {
 }
 
 resource "aws_internet_gateway" "tf_igw" {
-  vpc_id = aws_vpc.tf_vpc_prueba
+  vpc_id = aws_vpc.tf_vpc_prueba.id
 }
 
 resource "aws_route_table" "tf_rt" {
